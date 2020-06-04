@@ -1,0 +1,80 @@
+	document.body.addEventListener('click', function(e) {
+				if (e.target.classList.contains('dinar')) {
+					counterForNumberOfPClicked++;
+
+					allScoreArray[counterForNumberOFLabelSelectedInCC - 1] += parseInt(
+						calcTrixGame('دينار', e.target.innerHTML)
+					);
+					gameType['دينار'] -= parseInt(e.target.innerHTML);
+
+					e.target.classList.add('clicked', 'no-clicking');
+					e.target.parentElement.classList.add('no-clicking');
+				} else if (e.target.classList.contains('ltsh')) {
+					counterForNumberOfPClicked++;
+
+					allScoreArray[counterForNumberOFLabelSelectedInCC - 1] += parseInt(
+						calcTrixGame('لطش', e.target.innerHTML)
+					);
+					gameType['لطش'] -= parseInt(e.target.innerHTML);
+
+					e.target.classList.add('clicked', 'no-clicking');
+					e.target.parentElement.classList.add('no-clicking');
+				} else if (e.target.classList.contains('banat')) {
+					counterForNumberOfPClicked++;
+
+					allScoreArray[counterForNumberOFLabelSelectedInCC - 1] += parseInt(
+						calcTrixGame('بنات', e.target.innerHTML)
+					);
+					gameType['بنات'] -= parseInt(e.target.innerHTML);
+
+					e.target.classList.add('clicked', 'no-clicking');
+					e.target.parentElement.classList.add('no-clicking');
+				} else if (e.target.classList.contains('PforK')) {
+					counterForNumberOfPClicked++;
+
+					allScoreArray[counterForNumberOFLabelSelectedInCC - 1] += parseInt(e.target.dataset.Kval);
+
+					e.target.parentElement.classList.add('no-clicking');
+
+					if (e.target.dataset.Kval == -75) {
+						e.target.classList.add('clicked', 'no-clicking');
+					}
+				}
+				if (counterForNumberOfPClicked == 4) {
+					allScoreValues[counterForNumberOFLabelSelectedInCC - 1].innerHTML =
+						allScoreArray[counterForNumberOFLabelSelectedInCC - 1] +
+						parseInt(allScoreValues[counterForNumberOFLabelSelectedInCC - 1].textContent);
+
+					counterForNumberOFLabelSelectedInCC++;
+
+					counterForNumberOfPClicked = 0;
+				}
+			});
+
+
+
+            ***************************************************************************************************
+            document.body.addEventListener('click', function(e) {
+				if (e.target.classList.contains('TrixCCSelect')) {
+					let allitemsToSelectArray = Array.from(allitemsToSelect);
+					let indexOfPlayer = allitemsToSelectArray.indexOf(e.target.parentElement);
+
+					e.target.parentElement.classList.add('no-clicking');
+
+					allScoreValues[indexOfPlayer].innerHTML =
+						parseInt(e.target.dataset.trixValue) + parseInt(allScoreValues[indexOfPlayer].innerHTML);
+
+					let childrenOfParetElement = Array.from(e.target.parentElement.children);
+					let indexOfChosenSelect = childrenOfParetElement.indexOf(e.target);
+
+					allitemsToSelect.forEach((item) => {
+						item.children[indexOfChosenSelect].classList.add('clicked', 'no-clicking');
+					});
+
+					counterForNumberOfPClicked++;
+
+					if (counterForNumberOfPClicked == 4) {
+					}
+				}
+			});
+            
